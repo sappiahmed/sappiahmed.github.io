@@ -107,10 +107,10 @@
         <h3 style="margin-top:0">Process</h3>
         <ol class="tight-list">
           <li><span class="kbd">LIG</span> on PI film via CO<sub>2</sub> laser; tune power/speed to get resistance ≈ 10–50 Ω.</li>
-          <li><span class="kbd">SEBS encapsulation</span>: drop-cast SEBS (in toluene); cure → peel to obtain a soft membrane with embedded LIG.</li>
-          <li><span class="kbd">CNT ink</span> blade-coat/screen areas for low-R leads and contact pads; dry in room temperature.</li>
-          <li><span class="kbd">Hot-melt film</span> transfer: align sensor on adhesive paper and laminate (≈90–110 °C).</li>
-          <li><span class="kbd">Textile bonding</span>: iron onto garment (short dwell, moderate pressure) → flexible, machine-washable module.</li>
+          <li><span class="kbd">SEBS encapsulation</span> drop-cast SEBS (in toluene); cure → peel to obtain a soft membrane with embedded LIG.</li>
+          <li><span class="kbd">CNT ink</span> blade-coat areas for low-R leads and contact pads; dry in room temperature.</li>
+          <li><span class="kbd">Hot-melt film transfer</span> align sensor on adhesive paper and laminate (≈90–110 °C).</li>
+          <li><span class="kbd">Textile bonding</span> iron onto garment (short dwell, moderate pressure) → flexible, machine-washable module.</li>
         </ol>
         <h4>Bill of Materials</h4>
         <ul class="tight-list">
@@ -124,35 +124,10 @@
         <img src="fabrication_detail.png" alt="Close-ups of LIG, SEBS peel, CNT coating, and garment lamination" />
         <p class="small">Representative photos of each critical step.</p>
         <div class="metric-grid" style="margin-top:10px">
-          <div class="metric"><div class="stat">10–50 Ω/sq</div><div class="label">LIG sheet resistance</div></div>
+          <div class="metric"><div class="stat">10–50 kΩ</div><div class="label">LIG resistance</div></div>
           <div class="metric"><div class="stat">>150%</div><div class="label">SEBS stretch target</div></div>
           <div class="metric"><div class="stat">&lt;15 mΩ</div><div class="label">Pad contact (Cu-Ag)</div></div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TEMPERATURE CHARACTERIZATION ===== -->
-  <section class="container section-card" id="temp">
-    <h2>Temperature Characterization</h2>
-    <div class="grid two">
-      <div>
-        <h3 style="margin-top:0">Setup</h3>
-        <ul class="tight-list">
-          <li>Thermal plate: ~20–45 °C ramps.</li>
-          <li>Reference probe: Class-A PT1000.</li>
-          <li>Readout: Built-in interface from LCR meter.</li>
-        </ul>
-        <h4>Protocol</h4>
-        <ol class="tight-list">
-          <li>Place sensor and reference co-located on thermal plate and apply heat.</li>
-          <li>Record R(t) and T<sub>ref</sub>(t).</li>
-          <li>Fit linear curve; report <strong>TCR</strong> (α), linearity (R²).</li>
-        </ol>
-      </div>
-      <div>
-        <img src="temp_results.png" alt="Temperature calibration curve and step response" />
-        <p class="small">Example calibration (slope = TCR) plot.</p>
       </div>
     </div>
   </section>
@@ -185,6 +160,31 @@
           <div class="metric"><div class="stat">>35 dB</div><div class="label">Typical SNR (rest)</div></div>
           <div class="metric"><div class="stat">0.5–40 Hz</div><div class="label">ECG passband</div></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TEMPERATURE CHARACTERIZATION ===== -->
+  <section class="container section-card" id="temp">
+    <h2>Temperature Characterization</h2>
+    <div class="grid two">
+      <div>
+        <h3 style="margin-top:0">Setup</h3>
+        <ul class="tight-list">
+          <li>Thermal plate: ~20–45 °C ramps.</li>
+          <li>Reference probe: Class-A PT1000.</li>
+          <li>Readout: Built-in interface from LCR meter.</li>
+        </ul>
+        <h4>Protocol</h4>
+        <ol class="tight-list">
+          <li>Place sensor and reference co-located on thermal plate and apply heat.</li>
+          <li>Record R(t) and T<sub>ref</sub>(t).</li>
+          <li>Fit linear curve; report <strong>TCR</strong> (α), linearity (R²).</li>
+        </ol>
+      </div>
+      <div>
+        <img src="temp_results.png" alt="Temperature calibration curve and step response" />
+        <p class="small">Example calibration (slope = TCR) plot.</p>
       </div>
     </div>
   </section>
