@@ -261,7 +261,6 @@ python scripts/run_train.py   # creates /results/<*.png + history.csv></pre>
       <strong>Dataset expansion & signal quality optimization</strong> —
       Acquire higher-fidelity voltage traces by improving shielding, grounding, and mechanical stability.
       Collect multi-session, multi-subject datasets with controlled motion profiles to reduce domain shift.
-      Add calibration pulses and noise-profiling sequences to support normalization and domain adaptation.
     </li>
 
     <li>
@@ -275,12 +274,8 @@ python scripts/run_train.py   # creates /results/<*.png + history.csv></pre>
     <li>
   <strong>Real-time data acquisition & wireless streaming (PC-side ML)</strong> —
   Use the ESP32 as a data-acquisition node only: sample the sensor at a fixed rate,
-  packetize frames with <em>seq_id</em>, <em>timestamp</em>, and <em>CRC</em>, then stream to a PC
-  via <strong>Wi-Fi</strong> (WebSocket/TCP/UDP) or <strong>BLE</strong> (notifications/indications).
+  stream to a PC via <strong>Wi-Fi</strong> (WebSocket/TCP/UDP) or <strong>BLE</strong> (notifications/indications).
   Run the entire ML stack on the PC (denoising → segmentation → inference → logging).
-  Implement time synchronization (NTP or host-epoch handshake), loss/dup detection,
-  back-pressure handling (ring buffers), and optional delta/PCM compression to maintain
-  target sampling rates with low latency.
   <ul style="margin-top:6px;">
     <li><em>ESP32</em>: ADC read → ring buffer → packet (seq_id, t_us, payload, CRC) → Wi-Fi/BLE TX.</li>
     <li><em>PC</em>: socket/WebSocket/BLE client → integrity check → preprocess → model inference → save CSV/PNG.</li>
@@ -291,9 +286,7 @@ python scripts/run_train.py   # creates /results/<*.png + history.csv></pre>
   </ul>
 </section>
 
-
-
-  <!-- ===== Footer (same minimal block as example) ===== -->
+  <!-- ===== FOOTER ===== -->
   <section class="container" style="padding:0; margin-bottom:28px">
     <p class="small">© <span id="year"></span> Safi Ahmed • <a href="/#contact">Contact</a></p>
   </section>
