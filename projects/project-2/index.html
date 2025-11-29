@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ECG & Temperature Sensor — Project | Safi Ahmed</title>
+  <meta name="description" content="End-to-end development of stretchable ECG and temperature sensors: fabrication workflow, temperature characterization, and ECG characterization." />
+
+  <!-- Keep your global CSS/JS for consistent site-wide look -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <script defer src="/js/script.js"></script>
+
+  <!-- Page-local helpers (match previous project pages) -->
+  <style>
+    .section-card{
+      background:var(--card); border:1px solid var(--ring); border-radius:var(--radius);
+      box-shadow:var(--elev); padding:28px; margin-top:18px;
+      transition: background-color .3s, border-color .3s, box-shadow .3s;
+    }
+    /* Contained images (no overflow) */
+    .section-card img{
+      display:block; width:100%; height:auto; max-width:100%;
+      border-radius:12px; object-fit:cover; box-shadow:var(--shadow-sm);
+    }
+    .pill{
+      display:inline-block; padding:6px 10px; border:1px solid var(--ring);
+      border-radius:999px; color:var(--muted); font-size:12px; text-decoration:none;
+    }
+    /* Inline link style to match main site */
+    .section-card a{ color:var(--brand); text-decoration:none; font-weight:500; transition:color .2s,text-decoration .2s; }
+    .section-card a:hover{ text-decoration:underline; color:color-mix(in oklab, var(--brand) 80%, var(--text)); }
+
+    .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .btn-link{
+      display:inline-block; padding:8px 12px; border:1px solid var(--ring);
+      border-radius:10px; text-decoration:none; color:var(--text);
+      background: color-mix(in oklab, var(--card) 80%, transparent);
+      box-shadow:var(--shadow-sm);
+      transition: transform .15s ease;
+    }
+    .btn-link:hover{ transform:translateY(-1px); }
+
+    .grid{ display:grid; gap:18px; }
+    @media (min-width:860px){ .grid.two{ grid-template-columns:1.15fr 1fr; } }
+
+    .small{ font-size:13px; color:var(--muted); }
+    .kbd{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; background:var(--ring); color:var(--text); padding:2px 6px; border-radius:6px; font-size:12px; }
+
+    /* Nice lists that align with text */
+    .tight-list{ padding-left:1.1rem; }
+    .tight-list li{ margin:6px 0; }
+    .metric-grid{ display:grid; gap:12px; grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .metric{ background:var(--card); border:1px solid var(--ring); border-radius:12px; padding:14px; box-shadow:var(--shadow-sm); }
+    .metric .stat{ font-weight:800; font-size:1.05rem; }
+    .metric .label{ font-size:.85rem; color:var(--muted); }
+    @media (max-width:720px){ .metric-grid{ grid-template-columns:1fr; } }
+  </style>
+</head>
+
+<body>
+  <!-- ===== NAVBAR (same structure/classes as earlier example) ===== -->
+  <nav class="container">
+    <div class="logo"><a href="/#home" style="text-decoration:none; color:inherit">Safi Ahmed</a></div>
+    <ul class="nav-links">
+      <li><a href="/#home">Home</a></li>
+      <li><a href="/#education">Education</a></li>
+      <li><a href="/#experience">Experience</a></li>
+      <li><a href="/#publications">Publications</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" aria-label="Toggle menu">☰</div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="container section-card" id="hero">
+    <a class="pill" href="/projects">← Back to Projects</a>
+    <h1 style="margin:10px 0 6px">Flexible ECG & Temperature Sensor</h1>
+    <p class="small" style="margin:6px 0 0">
+      From laser-induced graphene (LIG) patterned electrodes to SEBS encapsulation and textile integration by hot pressing.
+      This page covers the <strong>fabrication workflow</strong>, <strong>temperature characterization</strong>, and <strong>ECG characterization</strong>.
+    </p>
+    <div class="actions">
+      <a class="btn-link" href="#fabrication">Fabrication</a>
+      <a class="btn-link" href="#temp">Temp Characterization</a>
+      <a class="btn-link" href="#ecg">ECG Characterization</a>
+      <a class="btn-link" href="#files">Files</a>
+    </div>
+  </section>
+
+  <!-- ===== OVERVIEW FIGURE ===== -->
+  <section class="container section-card" id="overview">
+    <h2>Workflow Overview</h2>
+    <!-- replace src with your exported PNG path -->
+    <img src="ecg_temp_workflow.png" alt="Overview: LIG → measurement → SEBS casting/peel → CNT blade-coating → attach to hot-melt → laminating → iron to garment" />
+    <p class="small" style="margin-top:8px">
+      LIG patterning and verification → SEBS drop-casting & peel → CNT blade-coating → hot-melt transfer →
+      lamination → garment integration by ironing.
+    </p>
+  </section>
+
+  <!-- ===== FABRICATION ===== -->
+  <section class="container section-card" id="fabrication">
+    <h2>Fabrication</h2>
+    <div class="grid two">
+      <div>
+        <h3 style="margin-top:0">Process</h3>
+        <ol class="tight-list">
+          <li><span class="kbd">LIG</span> on PI film via CO<sub>2</sub> laser; tune power/speed to get resistance ≈ 10–50 Ω.</li>
+          <li><span class="kbd">SEBS encapsulation</span>: drop-cast SEBS (in toluene); cure → peel to obtain a soft membrane with embedded LIG.</li>
+          <li><span class="kbd">CNT ink</span> blade-coat/screen areas for low-R leads and contact pads; dry in room temperature.</li>
+          <li><span class="kbd">Hot-melt film</span> transfer: align sensor on adhesive paper and laminate (≈90–110 °C).</li>
+          <li><span class="kbd">Textile bonding</span>: iron onto garment (short dwell, moderate pressure) → flexible, machine-washable module.</li>
+        </ol>
+        <h4>Bill of Materials</h4>
+        <ul class="tight-list">
+          <li>Substrate: PI sheets; Elastomer: SEBS (solution-cast).</li>
+          <li>Conductive network: LIG (electrodes) + CNT ink.</li>
+          <li>Adhesives: hot-melt paper; Garment: polyester/elastane base.</li>
+          <li>Connectors: Copper tape with silver paste and encapsupate with PI tape.</li>
+        </ul>
+      </div>
+      <div>
+        <img src="fabrication_detail.png" alt="Close-ups of LIG, SEBS peel, CNT coating, and garment lamination" />
+        <p class="small">Representative photos of each critical step.</p>
+        <div class="metric-grid" style="margin-top:10px">
+          <div class="metric"><div class="stat">10–50 Ω/sq</div><div class="label">LIG sheet resistance</div></div>
+          <div class="metric"><div class="stat">>150%</div><div class="label">SEBS stretch target</div></div>
+          <div class="metric"><div class="stat">&lt;15 mΩ</div><div class="label">Pad contact (Cu-Ag)</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TEMPERATURE CHARACTERIZATION ===== -->
+  <section class="container section-card" id="temp">
+    <h2>Temperature Characterization</h2>
+    <div class="grid two">
+      <div>
+        <h3 style="margin-top:0">Setup</h3>
+        <ul class="tight-list">
+          <li>Thermal plate: ~20–45 °C ramps.</li>
+          <li>Reference probe: Class-A PT1000.</li>
+          <li>Readout: Built-in interface from LCR meter.</li>
+        </ul>
+        <h4>Protocol</h4>
+        <ol class="tight-list">
+          <li>Place sensor and reference co-located on thermal plate and apply heat.</li>
+          <li>Record R(t) and T<sub>ref</sub>(t).</li>
+          <li>Fit linear curve; report <strong>TCR</strong> (α), linearity (R²).</li>
+        </ol>
+      </div>
+      <div>
+        <img src="temp_results.png" alt="Temperature calibration curve and step response" />
+        <p class="small">Example calibration (slope = TCR) plot.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ECG CHARACTERIZATION ===== -->
+  <section class="container section-card" id="ecg">
+    <h2>ECG Characterization</h2>
+    <div class="grid two">
+      <div>
+        <h3 style="margin-top:0">Electrode & Placement</h3>
+        <ul class="tight-list">
+          <li>Flexible LIG/CNT electrodes with SEBS substrate.</li>
+          <li>Lead-I configuration; textile-based sports vest ensures repeatable placement & pressure.</li>
+        </ul>
+        <h4>Electronics</h4>
+        <ul class="tight-list">
+          <li>Data acquisition by: MP150 (Biopack Systems)</li>
+        </ul>
+        <h4>Analysis</h4>
+        <ul class="tight-list">
+          <li>Preprocess: median + bandpass (0.5–40 Hz), notch.</li>
+          <li>R-peak detection → HR/HRV; SNR from QRS P2P vs TP variance.</li>
+          <li>Metrics: SNR (dB), missing-beat rate, motion-artifact robustness.</li>
+        </ul>
+      </div>
+      <div>
+        <img src="ecg_results.png" alt="Captured ECG, R-peaks, and HR trend" />
+        <p class="small">Captured ECG with detected R-peaks and derived heart-rate trace.</p>
+        <div class="metric-grid" style="margin-top:10px">
+          <div class="metric"><div class="stat">>35 dB</div><div class="label">Typical SNR (rest)</div></div>
+          <div class="metric"><div class="stat">0.5–40 Hz</div><div class="label">ECG passband</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FILES / REPO ===== -->
+  <section class="container section-card" id="Next">
+    <h2>What’s Next</h2>
+    <ul class="tight-list">
+    <li><strong>Direct deposition on garment (replace hot pressing)</strong><br>
+          Transition to <em>in-situ</em> coating/printing of nanomaterials on textiles to improve conformity, breathability, and adhesion under sweat and repeated wash cycles.
+      </li>
+      <li><strong>Real-time ECG monitoring with flexible PCB + DAQ</strong><br>
+          Spin a flexible PCB (INA/ADC, DRL, BLE/Wi-Fi, battery management) and validate continuous streaming to PC dashboards with motion-artifact tagging and auto-calibration routines.
+      </li>
+      <li><strong>ML-assisted signal quality & vital detection</strong><br>
+          On the PC side, run Python pipelines to estimate SNR in real time, classify signal quality (good/noisy/loose contact), and detect vital symptoms (arrhythmia heuristics from R-R intervals, brady/tachy alerts) with lightweight models.
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== FOOTER (same style as example) ===== -->
+  <section class="container" style="padding:0; margin-bottom:28px">
+    <p class="small">© <span id="year"></span> Safi Ahmed • <a href="/#contact">Contact</a></p>
+  </section>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

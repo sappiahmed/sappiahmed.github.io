@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Materials Synthesis — Project | Safi Ahmed</title>
+  <meta name="description" content="MXene and Siloxene synthesis workflows." />
+
+  <!-- Use your global site CSS/JS so design stays consistent -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <script defer src="/js/script.js"></script>
+
+  <!-- Page-local helpers (same tokens/patterns you’re using elsewhere) -->
+  <style>
+    .section-card{
+      background:var(--card); border:1px solid var(--ring); border-radius:var(--radius);
+      box-shadow:var(--elev); padding:28px; margin-top:18px;
+      transition: background-color .3s, border-color .3s, box-shadow .3s;
+    }
+    .section-card h2{ margin:0 0 12px; }
+
+    /* Ensure images stay inside cards and scale nicely */
+    .section-card img{
+      width:100%; height:auto; display:block; border-radius:12px;
+      object-fit:contain; border:1px solid var(--ring);
+      background:var(--card);
+    }
+    .pill{
+      display:inline-block; padding:6px 10px; border:1px solid var(--ring);
+      border-radius:999px; color:var(--muted); font-size:12px; text-decoration:none;
+    }
+    .section-card a{ color:var(--brand); text-decoration:none; font-weight:500; transition:color .2s,text-decoration .2s; }
+    .section-card a:hover{ text-decoration:underline; color:color-mix(in oklab, var(--brand) 80%, var(--text)); }
+  </style>
+</head>
+
+<body>
+  <!-- ===== Site Navbar (same structure/classes as your main page) ===== -->
+  <nav class="container">
+    <div class="logo"><a href="/#home" style="text-decoration:none; color:inherit">Safi Ahmed</a></div>
+    <ul class="nav-links">
+      <li><a href="/#home">Home</a></li>
+      <li><a href="/#education">Education</a></li>
+      <li><a href="/#experience">Experience</a></li>
+      <li><a href="/#publications">Publications</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" aria-label="Toggle menu">☰</div>
+  </nav>
+  <section class="container section-card" id="intro">
+    <a class="pill" href="/projects">← Back to Projects</a>
+    <h1 class="page-title">Materials Synthesis</h1>
+    <p class="page-intro">
+      Overview of various advanced material synthesis pipelines used in our research.
+    </p>
+  </section>
+  <!-- ===== MXene Synthesis ===== -->
+  <section class="container section-card" id="mxene">
+    <h2>MXene Synthesis</h2>
+    <!-- Replace the src with your actual image path -->
+    <img src="mxene_synthesis.png" alt="MXene synthesis workflow image" />
+  </section>
+
+  <!-- ===== Siloxene Synthesis ===== -->
+  <section class="container section-card" id="siloxene">
+    <h2>Siloxene Synthesis</h2>
+    <!-- Replace the src with your actual image path -->
+    <img src="siloxene_synthesis.png" alt="Siloxene synthesis workflow image" />
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <section class="container" style="padding:0; margin-bottom:28px">
+    <p class="small">© <span id="year"></span> Safi Ahmed • <a href="/#contact">Contact</a></p>
+  </section>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

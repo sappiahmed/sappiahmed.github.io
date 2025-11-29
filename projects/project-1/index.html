@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Real-World ML on Wearable Sensor Signals — Project | Safi Ahmed</title>
+  <meta name="description" content="From raw oscilloscope CSVs to trained models: full pipeline with segmentation, dataset building, training, and evaluation on microcone sliding signals." />
+
+  <!-- Use your global site CSS/JS so design stays consistent -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <script defer src="/js/script.js"></script>
+
+  <!-- Page-local helpers (same tokens/patterns you’re using elsewhere) -->
+  <style>
+    :root{
+      --section-gap:28px;
+    }
+
+    /* Cards + consistent spacing */
+    .section-card{
+      background:var(--card); border:1px solid var(--ring); border-radius:var(--radius);
+      box-shadow:var(--elev); padding:28px; margin-top:18px;
+      transition: background-color .3s, border-color .3s, box-shadow .3s;
+      width:100%;
+      box-sizing:border-box;
+    }
+
+    /* Inline link style to match the main site */
+    .section-card a{ color:var(--brand); text-decoration:none; font-weight:500; transition:color .2s,text-decoration .2s; }
+    .section-card a:hover{ text-decoration:underline; color:color-mix(in oklab, var(--brand) 80%, var(--text)); }
+
+    /* Pills / small tags */
+    .pill{
+      display:inline-block; padding:6px 10px; border:1px solid var(--ring);
+      border-radius:999px; color:var(--muted); font-size:12px; text-decoration:none;
+    }
+    .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .tag{ font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid var(--ring);
+      background: color-mix(in oklab, var(--brand) 12%, transparent); }
+
+    .small{ font-size:13px; color:var(--muted); }
+
+    /* Two-column helper that never exceeds container width */
+    .grid{ display:grid; gap:20px; width:100%; }
+    .grid.two{ grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+    .grid.equal{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    @media (max-width:900px){ .grid.two, .grid.equal{ grid-template-columns:1fr; } }
+
+    /* Figure-like layout */
+    .figure{ display:grid; column-gap:32px; row-gap:18px; }
+    @media (min-width:860px){ .figure{ grid-template-columns:1.2fr 1fr; } }
+    .figure img{ width:100%; max-width:600px; height:auto; border-radius:12px; display:block; object-fit:cover; }
+
+    /* Code block */
+    .code{
+      font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+      background: color-mix(in oklab, var(--card) 92%, transparent);
+      border: 1px dashed var(--ring);
+      border-radius: 12px;
+      padding: 14px;
+      overflow:auto;
+      color: var(--text);
+    }
+
+    html, body{ overflow-x:hidden; }
+    /* Ensure images never overflow section-card */
+.section-card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  margin: 0;
+  box-shadow: var(--shadow-sm);
+  object-fit: cover;
+}
+/* Make list bullets align with text inside cards */
+.section-card ul,
+.section-card ol {
+  padding-left: 1.2rem;     /* consistent with paragraphs */
+  margin-left: 0;           /* remove browser default offset */
+  list-style-position: inside; /* bullet inside the text block */
+}
+
+.section-card li {
+  margin: 4px 0;
+  line-height: 1.55;
+}
+.actions{ 
+  display:flex; 
+  gap:10px; 
+  flex-wrap:wrap; 
+  margin-top:12px; 
+}
+
+.btn-link{
+  display:inline-block; 
+  padding:8px 12px; 
+  border:1px solid var(--ring);
+  border-radius:10px; 
+  text-decoration:none; 
+  color:var(--text);
+  background: color-mix(in oklab, var(--card) 80%, transparent);
+  box-shadow:var(--shadow-sm);
+  transition: transform .15s ease;
+}
+.btn-link:hover{ 
+  transform:translateY(-1px); 
+}
+
+  </style>
+</head>
+
+<body>
+  <!-- ===== Site Navbar (EXACT copy from your example) ===== -->
+  <nav class="container">
+    <div class="logo"><a href="/#home" style="text-decoration:none; color:inherit">Safi Ahmed</a></div>
+    <ul class="nav-links">
+      <li><a href="/#home">Home</a></li>
+      <li><a href="/#education">Education</a></li>
+      <li><a href="/#experience">Experience</a></li>
+      <li><a href="/#publications">Publications</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" aria-label="Toggle menu">☰</div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="container section-card" id="hero">
+    <a class="pill" href="/projects">← Back to Projects</a>
+    <h1 style="margin:10px 0 6px">Real-World ML on Wearable Sensor Signals</h1>
+    <p class="small" style="margin:6px 0 0">
+      From raw oscilloscope CSVs to trained models: segmentation → dataset build → models (CNN/ResNet1D/Transformer/TCN) → evaluation & export.
+    </p>
+    <div class="tags" style="margin-top:10px">
+      <span class="tag">Signal Processing</span><span class="tag">Time-Series</span><span class="tag">Segmentation</span>
+      <span class="tag">Model Zoo</span><span class="tag">Confusion Matrices</span>
+    </div>
+    <div class="actions" style="margin-top:12px;">
+  <a class="btn-link" href="#overview">Overview</a>
+  <a class="btn-link" href="#pipeline">Pipeline</a>
+  <a class="btn-link" href="#results">Results</a>
+  <a class="btn-link" href="#run">Reproduce</a>
+  <a class="btn-link" href="#files">GitHub</a>
+</div>
+
+  </section>
+
+  <!-- ===== OVERVIEW (two columns inside one card) ===== -->
+  <section class="container section-card" id="overview">
+    <h2>Overview</h2>
+    <div class="grid two">
+      <div>
+        <p>
+          This project skips pre-packaged datasets. It ingests <em>raw</em> sliding signals (CSV: time, voltage),
+          detects peaks, anchors to a local pre-peak, and slices fixed windows so models learn
+          shape/dynamics instead of timing jitter.
+        </p>
+        <ul>
+          <li>CSV per motion & per subject</li>
+          <li>Pre-peak anchor for alignment</li>
+          <li>Unified dataset with <code>user</code> & <code>label</code></li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="margin-top:0">Example signals</h3>
+        <img src="w1.png" alt="Raw signals → peaks → aligned segments">
+        <p class="small">Raw trace, detected peaks, aligned segments per subject.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PIPELINE ===== -->
+  <section class="container section-card" id="pipeline">
+    <h2>Pipeline</h2>
+    <ol>
+      <li><strong>Segmentation</strong> — parse each CSV, detect main peaks, find a local pre-peak anchor, then slice a fixed window.</li>
+      <li><strong>Dataset build</strong> — pad to max length, stack into a single CSV; add <code>user</code> and <code>label</code>.</li>
+      <li><strong>Config</strong> — epochs, LR, model name, normalize/augment toggles.</li>
+      <li><strong>Models</strong> — CNN, ResNet1D, Inception-style, CNN-LSTM, Transformer, TCN (via factory).</li>
+      <li><strong>Training</strong> — Adam + StepLR; save history and final test metrics.</li>
+      <li><strong>Evaluation</strong> — accuracy, per-class metrics, confusion matrices; auto-export combined figure.</li>
+    </ol>
+    <div class="callout" style="margin-top:14px">
+      <strong>Why pre-peak anchoring?</strong> It reduces temporal jitter across repetitions so models generalize to motion dynamics instead of misalignment artifacts.
+    </div>
+  </section>
+
+  <!-- ===== RESULTS (two columns inside one card) ===== -->
+  <section class="container section-card" id="results">
+    <h2>Results</h2>
+    <div class="grid two">
+      <div>
+        <h3 style="margin-top:0">Per-subject distributions</h3>
+        <p>Representative overlays of aligned segments for each subject.</p>
+        <img src="w2.png" alt="Per-subject overlays montage">
+      </div>
+      <div>
+        <h3 style="margin-top:0">Auto-exported summary</h3>
+        <ul>
+          <li>Train/Val curves across epochs</li>
+          <li>Confusion matrices (counts + row-normalized)</li>
+          <li>Run metadata (model, batch size, LR, normalize/augment, dataset path)</li>
+        </ul>
+        <img src="w3.png" alt="Run summary">
+        <p class="small">History CSV is saved alongside the PNG for reproducibility.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW TO RUN ===== -->
+  <section class="container section-card" id="run">
+    <h2>Reproduce this</h2>
+    <p>Minimal steps to go from raw CSVs to trained models and figures:</p>
+    <div class="code">
+<pre># 1) Point config to your raw folder & dataset CSV (auto-builds if missing)
+raw_root_dir = "D:/path/to/Microcone"
+dataset_path = "microcone_segments_dataset.csv"
+
+# 2) Select a model and training knobs
+model_name   = "tcn"      # "cnn_tuned", "resnet1d", "ts_transformer", "tcn"
+num_epochs   = 30
+lr           = 1e-3
+normalize    = True
+augment      = True       # light Gaussian noise
+
+# 3) Train and export results
+python scripts/run_train.py   # creates /results/<*.png + history.csv></pre>
+    </div>
+    <p class="small" style="margin-top:10px">Splits: Train/Val/Test = 70/15/15 with stratification.</p>
+  </section>
+
+  <!-- ===== FILE TREE ===== -->
+  <section class="container section-card" id="files">
+    <h2>Project layout</h2>
+    <div class="code">
+<pre>ml_project/
+  config.py         # centralized training knobs (paths, lr, epochs, model) 
+  data.py           # segmentation + dataset build + dataloaders            
+  models.py         # model zoo & registry                                  
+  train.py          # train loop + final test + export                      
+  evaluate.py       # metrics + 2×2 summary figure                          
+  utils.py          # seed, epoch runner, full evaluate                      
+  scripts/
+    run_train.py    # single run from config
+    run_grid_2.py   # multi-model, multi-param grid</pre>
+    </div>
+  </section>
+
+  <!-- ===== Next ===== -->
+<!-- ===== Next (Technical Improvements) ===== -->
+<section class="container section-card" id="next">
+  <h2>Next</h2>
+  <p>
+    The following technical improvements are planned to advance the current pipeline
+    toward higher robustness, performance, and real-time deployment capability:
+  </p>
+
+  <ul style="margin-top:10px;">
+    <li>
+      <strong>Dataset expansion & signal quality optimization</strong> —
+      Acquire higher-fidelity voltage traces by improving shielding, grounding, and mechanical stability.
+      Collect multi-session, multi-subject datasets with controlled motion profiles to reduce domain shift.
+      Add calibration pulses and noise-profiling sequences to support normalization and domain adaptation.
+    </li>
+
+    <li>
+      <strong>Architecture-level enhancements for higher accuracy</strong> —
+      Explore deeper temporal encoders: dilated CNN stacks, hybrid CNN–Transformer pipelines,
+      gated attention modules, and lightweight diffusion-inspired feature extractors.
+      Run ablation studies on receptive field scaling, window length, and multi-head temporal attention
+      to maximize discriminability and robustness under inter-subject variability.
+    </li>
+
+    <li>
+  <strong>Real-time data acquisition & wireless streaming (PC-side ML)</strong> —
+  Use the ESP32 as a data-acquisition node only: sample the sensor at a fixed rate,
+  packetize frames with <em>seq_id</em>, <em>timestamp</em>, and <em>CRC</em>, then stream to a PC
+  via <strong>Wi-Fi</strong> (WebSocket/TCP/UDP) or <strong>BLE</strong> (notifications/indications).
+  Run the entire ML stack on the PC (denoising → segmentation → inference → logging).
+  Implement time synchronization (NTP or host-epoch handshake), loss/dup detection,
+  back-pressure handling (ring buffers), and optional delta/PCM compression to maintain
+  target sampling rates with low latency.
+  <ul style="margin-top:6px;">
+    <li><em>ESP32</em>: ADC read → ring buffer → packet (seq_id, t_us, payload, CRC) → Wi-Fi/BLE TX.</li>
+    <li><em>PC</em>: socket/WebSocket/BLE client → integrity check → preprocess → model inference → save CSV/PNG.</li>
+    <li><em>Protocols</em>: Wi-Fi/WebSocket for reliability + throughput; BLE for mobile or low-power demos.</li>
+    <li><em>Resilience</em>: reconnect + resume offsets; jitter smoothing with host clock; per-packet acks (optional).</li>
+  </ul>
+</li>
+  </ul>
+</section>
+
+
+
+  <!-- ===== Footer (same minimal block as example) ===== -->
+  <section class="container" style="padding:0; margin-bottom:28px">
+    <p class="small">© <span id="year"></span> Safi Ahmed • <a href="/#contact">Contact</a></p>
+  </section>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

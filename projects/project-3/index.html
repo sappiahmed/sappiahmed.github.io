@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Finger Mirror – Safi Ahmed</title>
+
+  <style>
+  /* ---------- THEME TOKENS (match site) ---------- */
+  :root{
+    --bg:#f7f9fc; --card:#ffffff; --text:#0b0c10; --muted:#4b5563;
+    --brand:#3b82f6; --accent:#22d3ee; --ring:#e5e7eb;
+    --elev:0 8px 24px rgba(9,12,20,.08); --shadow-sm:0 2px 6px rgba(0,0,0,.06);
+    --radius:16px; --radius-sm:12px;
+    --container-max:1100px; --container-pad:40px;
+    --nav-pad-y:12px; --nav-pad-x:28px;
+  }
+  :root[data-theme="dark"]{
+    --bg:#0b0c10; --card:#111319; --text:#ffffff; --muted:#d0d3db;
+    --brand:#7c9cff; --accent:#22d3ee; --ring:#2b2f3a;
+    --elev:0 8px 24px rgba(0,0,0,.45); --shadow-sm:0 2px 6px rgba(0,0,0,.35);
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme]){ color-scheme: dark; } }
+
+  /* ---------- BASE ---------- */
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body.page{
+    margin:0;
+    color:var(--text);
+    font:16px/1.6 ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial;
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(124,156,255,.12), transparent 40%),
+      radial-gradient(1000px 600px at 110% 20%, rgba(34,211,238,.10), transparent 35%),
+      var(--bg);
+    transition: background-color .3s, color .3s, background .3s;
+  }
+  a{ color:var(--brand); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .small{ font-size:13px; color:var(--muted); } /* for footer text */
+  
+  /* ---------- LAYOUT ---------- */
+  .wrap{
+    width:100%;
+    max-width:var(--container-max);
+    margin:0 auto;
+    padding:32px var(--container-pad);
+  }
+
+  /* ================================================
+     NAVBAR (matches main/projects pages)
+     ================================================ */
+  .nav{
+    position: sticky; top: 0; z-index: 1000;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-pad);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+
+    background: color-mix(in oklab, var(--card) 80%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom:1px solid var(--ring);
+    box-shadow: var(--shadow-sm);
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+
+    padding: var(--nav-pad-y) var(--container-pad);
+  }
+  .logo{ font-weight:800; letter-spacing:.2px; }
+  .nav-links{
+    display:flex; list-style:none; align-items:center; gap:18px;
+    margin:0; padding:0;
+  }
+  .nav-links a{
+    color:var(--text);
+    padding:8px 10px;
+    border-radius:10px;
+    opacity:.95;
+  }
+  .nav-links a:hover{
+    background: color-mix(in oklab, var(--brand) 12%, transparent);
+    text-decoration:none;
+  }
+
+  /* burger */
+  .menu-toggle{
+    display:none;
+    border:1px solid var(--ring);
+    background:var(--card);
+    padding:8px 12px;
+    border-radius:10px;
+    box-shadow:var(--shadow-sm);
+    color:var(--text);
+    cursor:pointer;
+  }
+
+  .pill{
+    display:inline-block; padding:6px 10px; border:1px solid var(--ring);
+    border-radius:999px; color:var(--muted); font-size:12px; text-decoration:none;
+  }
+
+  /* mobile */
+  @media (max-width:860px){
+    .menu-toggle{ display:inline-flex; }
+    .nav-links{
+      position:fixed; left:0; right:0; top:60px;
+      background:var(--card);
+      border-bottom:1px solid var(--ring);
+      box-shadow:var(--shadow-sm);
+      display:none; flex-direction:column; align-items:flex-start;
+      gap:14px; padding:16px var(--container-pad);
+    }
+    .nav-links.active{ display:flex; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    display:grid; grid-template-columns:1.1fr 1fr; gap:24px; margin-top:24px;
+  }
+  .hero-text .tagline{ color:var(--muted); margin:.25rem 0 .5rem; }
+  .meta span{
+    display:inline-block;
+    background: color-mix(in oklab, var(--brand) 9%, var(--card));
+    border:1px solid var(--ring);
+    padding:4px 8px; border-radius:999px;
+    margin-right:6px; color:var(--text); font-size:12px;
+  }
+  .lead{ opacity:.95; }
+  .hero-media iframe{
+    width:100%; aspect-ratio:16/9;
+    border:1px solid var(--ring); border-radius:var(--radius-sm);
+    background:var(--card); box-shadow:var(--elev);
+  }
+
+  /* ---------- COMPONENTS ---------- */
+  .btn{
+    background:var(--brand);
+    color:#08111f;
+    padding:10px 14px;
+    border-radius:12px;
+    font-weight:700;
+    border:0;
+  }
+  .btn:hover{ filter:brightness(1.05); }
+
+  /* SWITCH (theme button) */
+  .switch{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:8px 12px; border-radius:999px;
+    background: color-mix(in oklab, var(--card) 80%, transparent);
+    border:1px solid var(--ring);
+    box-shadow: var(--shadow-sm);
+    font-size:.92rem; font-weight:600;
+    color:var(--text);
+    cursor:pointer; user-select:none;
+  }
+  .switch .dot{
+    width:10px; height:10px; border-radius:50%;
+    background:var(--brand);
+    box-shadow:0 0 0 3px color-mix(in oklab, var(--brand) 25%, transparent);
+  }
+
+  /* CARDS */
+  .card{
+    background:var(--card);
+    border:1px solid var(--ring);
+    border-radius:var(--radius);
+    padding:18px;
+    box-shadow:var(--elev);
+  }
+
+  /* GRID */
+  .grid{ margin:32px 0; display:grid; gap:18px; }
+  .grid.two{ grid-template-columns:1fr 1fr; }
+  .grid.three{ grid-template-columns:repeat(3,1fr); }
+  @media (max-width:900px){
+    .hero{ grid-template-columns:1fr; }
+    .grid.two{ grid-template-columns:1fr; }
+    .grid.three{ grid-template-columns:1fr; }
+  }
+
+  /* MEDIA */
+  .img{
+    width:100%;
+    border:1px solid var(--ring);
+    border-radius:var(--radius-sm);
+    background:var(--card);
+  }
+
+  /* CHIPS */
+  .chips{
+    display:flex; gap:8px; flex-wrap:wrap;
+    padding:0; margin:8px 0 0;
+  }
+  .chips li{
+    list-style:none;
+    background: color-mix(in oklab, var(--brand) 9%, var(--card));
+    border:1px solid var(--ring);
+    padding:4px 10px; border-radius:999px;
+  }
+
+  /* ===== Footer (minimal, like example) ===== */
+  .footer-min{
+    padding:0; margin-bottom:28px;
+  }
+  </style>
+</head>
+
+<body class="page">
+
+<!-- ===========================
+     NAVBAR (matches main site)
+     =========================== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <a href="/#home" style="text-decoration:none; color:inherit">Safi Ahmed</a>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="/#home">Home</a></li>
+      <li><a href="/#education">Education</a></li>
+      <li><a href="/#experience">Experience</a></li>
+      <li><a href="/#publications">Publications</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/#contact">Contact</a></li>
+
+      <!-- theme toggle inside nav -->
+      <li>
+        <button id="mode" class="btn ghost switch" title="Toggle theme">
+          <span class="dot"></span><span class="label"></span>
+        </button>
+      </li>
+    </ul>
+
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  </div>
+</nav>
+
+<!-- ===========================
+     MAIN CONTENT
+     =========================== -->
+<main class="wrap">
+  <a class="pill" href="/projects">← Back to Projects</a>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Real-time Finger Bending</h1>
+      <p class="tagline">Wearable flex sensor → Rigged 3D hand in Unity (real time)</p>
+
+      <div class="meta">
+        <span>Hardware + Unity</span>
+        <span>2025</span>
+      </div>
+
+      <p class="lead">
+        I developed a low-cost sensing pipeline that uses a commercial flex sensor to drive a rigged 3D hand in Unity. The system performs real-time calibration, distributes motion across MCP/PIP/DIP joints, and applies subtle tilt correction for anatomically realistic finger curl.
+      </p>
+
+      <div class="cta">
+        <a class="btn" href="WebGL2/index.html" target="_blank" rel="noopener">Try Web Demo (slider)</a>
+      </div>
+    </div>
+
+    <div class="hero-media">
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/rteGH8n7oLk"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <section class="grid two">
+    <div class="card">
+      <h2>Problem</h2>
+      <p>
+        Camera-based finger tracking often breaks in real-world settings due to occlusion and lighting variability. Recent advances in flexible electronics and wearable sensing offer an opportunity to build smart gloves that capture motion directly at the source. My goal was to create a low-cost, real-time system that converts physical finger deformation into intuitive 3D hand movement for interactive applications.
+      </p>
+
+      <h2>Approach</h2>
+      <ul>
+        <li>ESP32 reads flex sensor → one value per line over USB serial.</li>
+        <li>Unity <code>SerialReaderSingle</code> parses and smooths the stream.</li>
+        <li>Calibration maps raw values (flat→bent) to joint rotation degrees.</li>
+        <li>Distributed rotation across MCP/PIP/DIP for natural curl.</li>
+        <li>Tilt bias compensates roll drift for more realistic movement.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>System Diagram</h2>
+      <img class="img" src="assets/img/finger-mirror-arch.png" alt="Sensor → ESP32 → serial → Unity bones" />
+
+      <h2>Tech</h2>
+      <ul class="chips">
+        <li>ESP32</li>
+        <li>Unity</li>
+        <li>C#</li>
+        <li>Serial</li>
+        <li>WebGL</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="grid three">
+    <figure class="card">
+      <img class="img" src="assets/img/hand-rigging.png" alt="">
+      <figcaption>Hand rigging in Blender</figcaption>
+    </figure>
+
+    <figure class="card">
+      <img class="img" src="assets/img/finger-calibration.png" alt="">
+      <figcaption>Calibration UI (flat/bent)</figcaption>
+    </figure>
+
+    <figure class="card">
+      <img class="img" src="assets/img/finger-bending.png" alt="">
+      <figcaption>Partially bended finger</figcaption>
+    </figure>
+  </section>
+
+  <section class="grid two">
+    <div class="card">
+      <h2>What's Unique</h2>
+      <ul>
+        <li>Robust mapping from raw resistance to anatomically plausible curl.</li>
+        <li>Pure WebGL demo + desktop serial mode for hardware tests.</li>
+        <li>Architecture ready to scale to 5-sensor smart glove.</li>
+        <li>Real-time tilt compensation for realistic finger tracking.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Next</h2>
+      <ul>
+        <li>Multi-sensor streaming (CSV) + per-finger calibration.</li>
+        <li>Gesture recognition (DTW/SVM) and haptic feedback.</li>
+        <li>OpenXR hand rig for VR prototypes.</li>
+        <li>Flexible-electronics-based smart glove + deep learning pipeline.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!-- ===== Footer (like the example) ===== -->
+<section class="wrap footer-min" style="padding:0; margin-bottom:28px">
+  <p class="small">© <span id="year"></span> Safi Ahmed • <a href="/#contact">Contact</a></p>
+</section>
+
+<!-- ===========================
+     JS: Theme Toggle + Nav Menu + Footer Year
+     =========================== -->
+<script>
+(function(){
+  const KEY = 'theme';
+  const root = document.documentElement;
+  const btn = document.getElementById('mode');
+
+  /* Build dot + label (defensive) */
+  function ensureBtn(){
+    if (!btn) return;
+    if (!btn.querySelector('.dot')){
+      btn.innerHTML = '<span class="dot"></span><span class="label"></span>';
+    }
+  }
+
+  function initial(){
+    try{
+      const s = localStorage.getItem(KEY);
+      if (s === 'light' || s === 'dark') return s;
+    }catch{}
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light';
+  }
+
+  function apply(t){
+    const theme = (t === 'light' || t === 'dark') ? t : 'light';
+    root.setAttribute('data-theme', theme);
+    try{ localStorage.setItem(KEY, theme); }catch{}
+    const label = btn && btn.querySelector('.label');
+    if (label) label.textContent = (theme === 'dark') ? "Night" : "Day";
+    if (btn) btn.setAttribute("aria-pressed", theme === "dark");
+  }
+
+  function toggle(){
+    const cur = root.getAttribute('data-theme') === "dark" ? "dark" : "light";
+    apply(cur === "dark" ? "light" : "dark");
+  }
+
+  /* Init theme toggle */
+  ensureBtn();
+  apply(initial());
+  if (btn) btn.addEventListener("click", toggle);
+
+  /* Mobile nav */
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (menuToggle && navLinks){
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+    });
+
+    document.addEventListener('click', (e)=>{
+      if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)){
+        navLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  /* Footer year (as in example) */
+  const y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>

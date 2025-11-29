@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seamless Touch-Sensing Smart Textiles — Project | Safi Ahmed</title>
+  <meta name="description" content="Seamless integration of capacitive touch sensing smart textiles via computerized machine knitting (intarsia)." />
+
+  <!-- Use your global site CSS/JS so design stays consistent -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <script defer src="/js/script.js"></script>
+
+  <!-- Page-local helpers to match your cards, grids, and embeds -->
+  <style>
+    .section-card{
+      background:var(--card); border:1px solid var(--ring); border-radius:var(--radius);
+      box-shadow:var(--elev); padding:28px; margin-top:18px;
+      transition: background-color .3s, border-color .3s, box-shadow .3s;
+    }
+    .pill{
+      display:inline-block; padding:6px 10px; border:1px solid var(--ring);
+      border-radius:999px; color:var(--muted); font-size:12px; text-decoration:none;
+    }
+    .metrics{ display:grid; gap:12px; grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .metric{ background:var(--card); border:1px solid var(--ring); border-radius:12px; padding:14px; box-shadow:var(--shadow-sm); }
+    .metric .stat{ font-weight:800; font-size:1.2rem; }
+    .metric .label{ font-size:.85rem; color:var(--muted); }
+    @media (max-width:720px){ .metrics{ grid-template-columns:1fr; } }
+
+    .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .tag{ font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid var(--ring);
+      background: color-mix(in oklab, var(--brand) 12%, transparent); }
+
+    .figure{ display:grid; column-gap:32px; row-gap:18px; }
+    @media (min-width:860px){ .figure{ grid-template-columns:1.2fr 1fr; } }
+
+    .figure img{ width:100%; max-width:600px; height:auto; border-radius:12px; display:block; object-fit:cover; }
+    .figure > div:first-child{ display:flex; flex-direction:column; gap:8px; align-items:center; text-align:center; }
+    .small{ font-size:13px; color:var(--muted); }
+    .kbd{
+      font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+      background:var(--ring); color:var(--text); padding:2px 6px; border-radius:6px; font-size:12px;
+    }
+
+    .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .btn-link{
+      display:inline-block; padding:8px 12px; border:1px solid var(--ring);
+      border-radius:10px; text-decoration:none; color:var(--text);
+      background: color-mix(in oklab, var(--card) 80%, transparent);
+      box-shadow:var(--shadow-sm);
+    }
+    .btn-link:hover{ transform:translateY(-1px); }
+
+    /* optional: video demo grid (keep for future videos if needed) */
+    .video-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; margin-top:18px; }
+    .video-box{ position:relative; width:100%; padding-bottom:56.25%; background:#000; border-radius:12px; overflow:hidden; border:1px solid var(--ring); box-shadow:var(--shadow-sm); }
+    .video-box iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+    /* Match main webpage inline link style */
+.section-card a {
+  color: var(--brand);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .2s ease, text-decoration .2s ease;
+}
+
+.section-card a:hover {
+  text-decoration: underline;
+  color: color-mix(in oklab, var(--brand) 80%, var(--text));
+}
+
+  </style>
+</head>
+
+<body>
+  <!-- ===== Site Navbar (same structure/classes as your main page) ===== -->
+  <nav class="container">
+    <div class="logo"><a href="/#home" style="text-decoration:none; color:inherit">Safi Ahmed</a></div>
+    <ul class="nav-links">
+      <li><a href="/#home">Home</a></li>
+      <li><a href="/#education">Education</a></li>
+      <li><a href="/#experience">Experience</a></li>
+      <li><a href="/#publications">Publications</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" aria-label="Toggle menu">☰</div>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <section class="container section-card" id="hero">
+    <a class="pill" href="/#publications">← Back to Publications</a>
+    <a class="pill" href="/projects">← Back to Projects</a>
+    <h1 style="margin:10px 0 6px">Seamless Integration of Touch-Sensing Smart Textiles through Computerized Machine Knitting</h1>
+    <p class="small" style="margin:6px 0 0">
+      <em>Journal of Engineered Fibers & Fabrics</em>, 2025 • Open Access (CC BY 4.0) • DOI: <a href="https://journals.sagepub.com/doi/full/10.1177/15589250251331051">10.1177/15589250251331051</a>.
+    </p>
+    <div class="actions">
+      <a class="btn-link" href="https://journals.sagepub.com/home/JEF" target="_blank" rel="noopener">Journal Page</a>
+      <a class="btn-link" href="hosen-ahmed-2025-seamless-integration-of-touch-sensing-smart-textiles-through-computerized-machine-knitting.pdf" target="_blank" rel="noopener">Download PDF</a>
+      <a class="btn-link" href="#workflow">Workflow</a>
+      <a class="btn-link" href="#materials">Methods</a>
+      <a class="btn-link" href="#results">Performance</a>
+      <a class="btn-link" href="#apps">Applications</a>
+      
+    </div>
+  </section>
+
+  <!-- ===== Quick Facts ===== -->
+  <section class="container section-card" id="quick-facts">
+    <h2>Results at a Glance</h2>
+    <div class="metrics">
+      <div class="metric"><div class="stat">~80 ms</div><div class="label">Response & recovery</div></div>
+      <div class="metric"><div class="stat">500×</div><div class="label">Touch–untouch cycles</div></div>
+      <div class="metric"><div class="stat">20×</div><div class="label">Wash cycles (ISO 105-C10)</div></div>
+      <div class="metric"><div class="stat">ΔC ≈ 14 pF</div><div class="label">Capacitance change on touch</div></div>
+      <div class="metric"><div class="stat">Intarsia</div><div class="label">Double-knit, knit-at-will placement</div></div>
+      <div class="metric"><div class="stat">SSR112 • 14G</div><div class="label">Computerized flatbed machine</div></div>
+    </div>
+    <p class="small" style="margin-top:10px">
+      Stable after washing, twisting, abrasion; low variation across 500 cycles; rapid response suitable for HMI.
+    </p>
+  </section>
+
+  <!-- ===== Abstract (plain-English) ===== -->
+  <section class="container section-card" id="abstract">
+    <h2>Abstract</h2>
+    <p>
+      The recent advancements in smart textiles have led to a surge in the use of textile-based sensors to detect various signals, including touch, pressure, body temperature, humidity, and so on. Due to their flexibility, bendability, and lightweight design, all of which make them perfect for a variety of flexible sensing systems. Herein, a capacitive touch sensor consisting of all textile components has been architected through computerized machine knitting technology. The prototype has been realized with the double knit intarsia knitting technique, which enables seamless integration of touch sensing textiles onto non-conductive base fabric during single knitting operations. This simple and easily embedded touch interface enables users to experience soft and ultraflexible electronic textiles with high responsive (response time ~80 ms) sensing capabilities. High reproducibility and repeatability were observed with the manufactured capacitive touch sensor, with negligible change in capacitance within 500 touched-untouched cycles. The sensor also demonstrates outstanding flexibility against various mechanical deformations, that is, twisting, grasping, folding, and pinching. As a proof of concept, a machine knitted touch keyboard, numpad, wristband, and soft switch have been demonstrated as capacitive touch sensing user interfaces for human-machine interaction.
+    </p>
+    <div class="tags">
+      <span class="tag">Smart Textiles</span><span class="tag">Capacitive Touch</span><span class="tag">Intarsia Knitting</span>
+      <span class="tag">Human–Machine Interaction</span><span class="tag">Washable</span>
+    </div>
+  </section>
+
+  <!-- ===== Workflow & Structure ===== -->
+  <section class="container section-card" id="workflow">
+    <h2>Workflow & Structure</h2>
+    <div class="figure">
+      <div>
+        <img src="workflow.jpg" alt="KnitPaint design → SSR112 knitting → fabricated sample → characterization" />
+        <p class="small">
+          KnitPaint programming → SSR112_14G → fabricated double-knit intarsia samples → LCR/MCU characterization.
+        </p>
+      </div>
+      <div>
+        <ul>
+          <span class="kbd">Machine</span> Shima Seiki SSR112 (14G); carriers for base & conductive yarns. <br>
+          <span class="kbd">Technique</span> Double-knit <strong>intarsia</strong> (conductive zones placed on demand). <br>
+          <span class="kbd">Why knitting?</span> Knit-at-will placement, low waste, soft & conformal, scalable. <br>
+          <span class="kbd">Sensing</span> Single-electrode self-capacitance.
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Materials & Methods ===== -->
+  <section class="container section-card" id="materials">
+    <h2>Materials & Methods</h2>
+    <ul>
+      <strong>Base yarn:</strong> Acrylic 200 dtex×2 (non-conductive). <br>
+      <strong>Functional yarn:</strong> PES/SS (60/40) 400 dtex×3. <br>
+      <strong>Knitting params:</strong> Conductive yarn run-in tension ≈11 cN; speed ≈0.70 m/s; double-bed knitting; DSCS used. <br>
+      <strong>Characterization:</strong> LCR meter (capacitance), MPR121 + MCU for cycling/latency; wash (ISO 105-C10), abrasion (ISO 12947), flexibility (ASTM D1388).
+    </ul>
+  </section>
+
+  <!-- ===== Performance ===== -->
+  <section class="container section-card" id="results">
+    <h2>Performance</h2>
+    <div class="metrics">
+      <div class="metric"><div class="stat">2.86%</div><div class="label">ΔC after washing</div></div>
+      <div class="metric"><div class="stat">1.62%</div><div class="label">ΔC after twisting</div></div>
+      <div class="metric"><div class="stat">5.42%</div><div class="label">ΔC after abrasion (2000×)</div></div>
+      <div class="metric"><div class="stat">1.74 cm</div><div class="label">Avg. bending length (Ultra-flexible)</div></div>
+      <div class="metric"><div class="stat">24.09 / 10.81 pF</div><div class="label">Touched / untouched mean</div></div>
+      <div class="metric"><div class="stat">CV 1.25% / 3.47%</div><div class="label">Touched / untouched stability</div></div>
+    </div>
+    <p class="small" style="margin-top:10px">
+      Minimal drift across 500 cycles at ~0.7–4 Hz; fast response; robust to folding, grasping, pinching, twist, and abrasion.
+    </p>
+  </section>
+
+  <!-- ===== Applications ===== -->
+  <section class="container section-card" id="apps">
+    <h2>Applications</h2>
+    <div class="figure">
+      <div>
+        <img src="Application.jpg" alt="Wristband, keyboard, numpad, soft switch controlling servo" />
+        <p class="small">Knitted wristband, keyboard, and numpad UIs; soft switch driving a servo (0°↔180°).</p>
+      </div>
+      <div>
+        <ul>
+          <strong>HMI widgets:</strong> Wristband, keyboard, numpad, soft switch. <br>
+          <strong>Signal chain:</strong> Sensor → ADC (e.g., MPR121) → MCU (USB HID) → PC. <br>
+          <strong>Use-cases:</strong> Soft interfaces, learning tools, wearable controls, robotics triggers.
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Citation ===== -->
+  <section class="container section-card" id="citation">
+    <h2>How to Cite</h2>
+    <p>
+      Hosen M.M., Ahmed S. <em>Seamless integration of touch sensing smart textiles through computerized machine knitting</em>.
+      <i>Journal of Engineered Fibers & Fabrics</i>, 2025. DOI: 10.1177/15589250251331051.
+    </p>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <section class="container" style="padding:0; margin-bottom:28px">
+    <p class="small">© <span id="year"></span> Safi Ahmed • <a href="/#contact">Contact</a></p>
+  </section>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

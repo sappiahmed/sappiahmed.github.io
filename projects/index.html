@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects – Safi Ahmed</title>
+
+  <!-- Global site CSS/JS (same as other pages) -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <script defer src="/js/script.js"></script>
+
+  <style>
+  /* ==========================
+     PAGE-SPECIFIC STYLES ONLY
+     (Navbar & footer are inherited from global/site + example)
+  ========================== */
+  html { scroll-behavior: smooth; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root{
+    --container-max:1100px;
+    --container-pad:40px;
+  }
+
+  body{
+    line-height:1.65;
+    font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  }
+
+  /* Main content container (matches site width) */
+  .wrap{
+    width:100%;
+    max-width:var(--container-max);
+    margin:0 auto;
+    padding:0 var(--container-pad);
+  }
+
+  /* Page title */
+  .page-title{
+    margin:24px 0 8px;
+    font-size:clamp(1.6rem, 1.2rem + 1.2vw, 2.1rem);
+    font-weight:800;
+  }
+  .subtitle{ color:var(--muted); margin-bottom:18px; }
+
+  /* Grid of project cards */
+  .grid{
+    margin:24px 0 40px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+  @media (max-width:1000px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:640px){ .grid{ grid-template-columns:1fr; } }
+
+  .card-wrap{ height:100%; }
+  .card{
+    background:var(--card);
+    border:1px solid var(--ring);
+    border-radius:var(--radius);
+    box-shadow:var(--elev);
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 16px 28px rgba(0,0,0,.18);
+    border-color:color-mix(in oklab, var(--accent) 40%, var(--ring));
+  }
+  .card h3{ margin-bottom:10px; font-size:1.12rem; }
+  .card p{ margin-bottom:14px; color:var(--muted); }
+
+  .chips{
+    margin-top:auto;
+    display:flex; gap:8px; flex-wrap:wrap;
+  }
+  .chips span{
+    padding:4px 10px;
+    border-radius:999px;
+    border:1px solid var(--ring);
+    font-size:12px;
+    background: color-mix(in oklab, var(--brand) 10%, var(--card));
+    color: color-mix(in oklab, var(--text) 85%, white);
+  }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR (exactly like the example) ===== -->
+  <nav class="container">
+    <div class="logo"><a href="/#home" style="text-decoration:none; color:inherit">Safi Ahmed</a></div>
+    <ul class="nav-links">
+      <li><a href="/#home">Home</a></li>
+      <li><a href="/#education">Education</a></li>
+      <li><a href="/#experience">Experience</a></li>
+      <li><a href="/#publications">Publications</a></li>
+      <li><a href="/projects" style="background:color-mix(in oklab, var(--brand) 12%, transparent)">Projects</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" aria-label="Toggle menu">☰</div>
+  </nav>
+
+  <!-- ===== MAIN ===== -->
+  <main class="wrap">
+    <h1 class="page-title">My Projects</h1>
+    <p class="subtitle">Selected work in smart textiles, bioelectronics, and machine learning.</p>
+
+    <!-- GRID -->
+    <section class="grid">
+      <div class="card-wrap" onclick="openProject('project-1')">
+        <article class="card">
+          <h3>Wearable Sensor ML Pipeline</h3>
+          <p>Python ML training & evaluation: Real-word data collection, processing and training</p>
+          <div class="chips">
+            <span>ML</span><span>Embedded</span><span>Sensors</span><span>PyTorch</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="card-wrap" onclick="openProject('project-2')">
+        <article class="card">
+          <h3>ECG & Temperature Sensor</h3>
+          <p>Fabrication of ECG and temperature Sensor and their characterizaiton</p>
+          <div class="chips">
+            <span>SEBS</span><span>Drop-casting</span><span>LIG</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="card-wrap" onclick="openProject('project-3')">
+        <article class="card">
+          <h3>3D Finger Bending Visualization</h3>
+          <p>Real-time 3D hand visualization synced with sensor streams.</p>
+          <div class="chips">
+            <span>3D</span><span>Unity</span><span>Blender</span><span>ESP32</span><span>WebGL</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="card-wrap" onclick="openProject('project-4')">
+        <article class="card">
+          <h3>Knitted Strain Sensor</h3>
+          <p>Flat-knitted resistive strain sensor for wireless and real-time human motion monitoring</p>
+          <div class="chips">
+            <span>Knitting</span><span>Strain Sensors</span><span>Shima-Seiki</span><span>Real-Time</span><span>Wireless</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="card-wrap" onclick="openProject('project-5')">
+        <article class="card">
+          <h3>Capacitive Touch Sensor</h3>
+          <p>Knit-based capacitive touch for human-machine interaction.</p>
+          <div class="chips">
+            <span>Intarsia</span><span>Conductive Yarn</span><span>Touch Sensing</span><span>Fabric Keyboard</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="card-wrap" onclick="openProject('project-6')">
+        <article class="card">
+          <h3>Knitted Resistive Pressure Sensor</h3>
+          <p>Out-of-plane knitted pressure sensor with robust performance.</p>
+          <div class="chips">
+            <span>3D Knitting</span><span>Pressure Sensor</span><span>HMI</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="card-wrap" onclick="openProject('project-7')">
+        <article class="card">
+          <h3>Material Synthesis</h3>
+          <p>Synthesize various materials that are important for flexible electronics and energy harvesting</p>
+          <div class="chips">
+            <span>MXene</span><span>Siloxene</span>
+          </div>
+        </article>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ===== FOOTER (exactly like the example) ===== -->
+  <section class="container" style="padding:0; margin-bottom:28px">
+    <p class="small">© <span id="year"></span> Safi Ahmed • <a href="/#contact">Contact</a></p>
+  </section>
+
+  <script>
+    // Simple nav link → subpage opener (optional)
+    function openProject(name){
+      window.location.href = `${name}/index.html`;
+    }
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
