@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Google tag (gtag.js) -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH41Q4GLYY"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -16,15 +16,12 @@
 
   <title>Projects – Safi Ahmed</title>
 
-  <!-- Global site CSS/JS (same as other pages) -->
+
   <link rel="stylesheet" href="/css/style.css" />
   <script defer src="/js/script.js"></script>
 
   <style>
-  /* ==========================
-     PAGE-SPECIFIC STYLES ONLY
-     (Navbar & footer are inherited from global/site + example)
-  ========================== */
+  
   html { scroll-behavior: smooth; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -38,7 +35,7 @@
     font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   }
 
-  /* Main content container (matches site width) */
+ 
   .wrap{
     width:100%;
     max-width:var(--container-max);
@@ -46,7 +43,6 @@
     padding:0 var(--container-pad);
   }
 
-  /* Page title */
   .page-title{
     margin:24px 0 8px;
     font-size:clamp(1.6rem, 1.2rem + 1.2vw, 2.1rem);
@@ -54,7 +50,7 @@
   }
   .subtitle{ color:var(--muted); margin-bottom:18px; }
 
-  /* Grid of project cards */
+
   .grid{
     margin:24px 0 40px;
     display:grid;
@@ -101,7 +97,7 @@
 
 <body>
 
-  <!-- ===== NAVBAR (exactly like the example) ===== -->
+
   <nav class="container">
     <div class="logo"><a href="/#home" style="text-decoration:none; color:inherit">Safi Ahmed</a></div>
     <ul class="nav-links">
@@ -115,12 +111,12 @@
     <div class="menu-toggle" aria-label="Toggle menu">☰</div>
   </nav>
 
-  <!-- ===== MAIN ===== -->
+
   <main class="wrap">
     <h1 class="page-title">My Projects</h1>
     <p class="subtitle">This portfolio presents my works at the intersection of smart textiles, soft bioelectronic devices, and machine-learning-enabled sensing. I explore how material design, fabrication techniques, and signal-processing models can be translated into functional systems for human–machine interaction and physiological monitoring. These projects reflect my approach to developing soft, adaptive, and data-driven technologies aligned with research in computational textiles, soft electronics, and interactive systems.</p>
 
-    <!-- GRID -->
+
     <section class="grid">
 
       <div class="card-wrap" onclick="openProject('project-8')">
@@ -206,18 +202,18 @@
     </section>
   </main>
 
-  <!-- ===== FOOTER (exactly like the example) ===== -->
+
   <section class="container" style="padding:0; margin-bottom:28px">
     <p class="small">© <span id="year"></span> Safi Ahmed • <a href="/#contact">Contact</a></p>
   </section>
 
   <script>
-    // Simple nav link → subpage opener (optional)
+
     function openProject(name){
       window.location.href = `${name}/index.html`;
     }
 
-    // Footer year
+ 
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>

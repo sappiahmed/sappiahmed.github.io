@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <!-- Google tag (gtag.js) -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH41Q4GLYY"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -17,7 +17,7 @@
   <title>Finger Gesture</title>
 
   <style>
-  /* ---------- THEME TOKENS (match site) ---------- */
+
   :root{
     --bg:#f7f9fc; --card:#ffffff; --text:#0b0c10; --muted:#4b5563;
     --brand:#3b82f6; --accent:#22d3ee; --ring:#e5e7eb;
@@ -33,7 +33,7 @@
   }
   @media (prefers-color-scheme: dark){ :root:not([data-theme]){ color-scheme: dark; } }
 
-  /* ---------- BASE ---------- */
+
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
   body.page{
@@ -48,9 +48,9 @@
   }
   a{ color:var(--brand); text-decoration:none; }
   a:hover{ text-decoration:underline; }
-  .small{ font-size:13px; color:var(--muted); } /* for footer text */
+  .small{ font-size:13px; color:var(--muted); }
   
-  /* ---------- LAYOUT ---------- */
+
   .wrap{
     width:100%;
     max-width:var(--container-max);
@@ -58,9 +58,7 @@
     padding:32px var(--container-pad);
   }
 
-  /* ================================================
-     NAVBAR (matches main/projects pages)
-     ================================================ */
+
   .nav{
     position: sticky; top: 0; z-index: 1000;
     max-width: var(--container-max);
@@ -95,7 +93,7 @@
     text-decoration:none;
   }
 
-  /* burger */
+
   .menu-toggle{
     display:none;
     border:1px solid var(--ring);
@@ -112,7 +110,7 @@
     border-radius:999px; color:var(--muted); font-size:12px; text-decoration:none;
   }
 
-  /* mobile */
+
   @media (max-width:860px){
     .menu-toggle{ display:inline-flex; }
     .nav-links{
@@ -126,7 +124,7 @@
     .nav-links.active{ display:flex; }
   }
 
-  /* ---------- HERO ---------- */
+
   .hero{
     display:grid; grid-template-columns:1.1fr 1fr; gap:24px; margin-top:24px;
   }
@@ -145,7 +143,7 @@
     background:var(--card); box-shadow:var(--elev);
   }
 
-  /* ---------- COMPONENTS ---------- */
+
   .btn{
     background:var(--brand);
     color:#08111f;
@@ -156,7 +154,7 @@
   }
   .btn:hover{ filter:brightness(1.05); }
 
-  /* SWITCH (theme button) */
+
   .switch{
     display:inline-flex; align-items:center; gap:8px;
     padding:8px 12px; border-radius:999px;
@@ -173,7 +171,7 @@
     box-shadow:0 0 0 3px color-mix(in oklab, var(--brand) 25%, transparent);
   }
 
-  /* CARDS */
+
   .card{
     background:var(--card);
     border:1px solid var(--ring);
@@ -182,7 +180,7 @@
     box-shadow:var(--elev);
   }
 
-  /* GRID */
+
   .grid{ margin:32px 0; display:grid; gap:18px; }
   .grid.two{ grid-template-columns:1fr 1fr; }
   .grid.three{ grid-template-columns:repeat(3,1fr); }
@@ -192,7 +190,7 @@
     .grid.three{ grid-template-columns:1fr; }
   }
 
-  /* MEDIA */
+
   .img{
     width:100%;
     border:1px solid var(--ring);
@@ -200,7 +198,7 @@
     background:var(--card);
   }
 
-  /* CHIPS */
+
   .chips{
     display:flex; gap:8px; flex-wrap:wrap;
     padding:0; margin:8px 0 0;
@@ -212,7 +210,7 @@
     padding:4px 10px; border-radius:999px;
   }
 
-  /* ===== Footer (minimal, like example) ===== */
+
   .footer-min{
     padding:0; margin-bottom:28px;
   }
@@ -221,9 +219,7 @@
 
 <body class="page">
 
-<!-- ===========================
-     NAVBAR (matches main site)
-     =========================== -->
+
 <nav class="nav">
   <div class="nav-inner">
     <div class="logo">
@@ -238,7 +234,7 @@
       <li><a href="/projects">Projects</a></li>
       <li><a href="/#contact">Contact</a></li>
 
-      <!-- theme toggle inside nav -->
+
       <li>
         <button id="mode" class="btn ghost switch" title="Toggle theme">
           <span class="dot"></span><span class="label"></span>
@@ -250,9 +246,7 @@
   </div>
 </nav>
 
-<!-- ===========================
-     MAIN CONTENT
-     =========================== -->
+
 <main class="wrap">
   <a class="pill" href="/projects">← Back to Projects</a>
 
@@ -359,21 +353,19 @@
   </section>
 </main>
 
-<!-- ===== Footer (like the example) ===== -->
+
 <section class="wrap footer-min" style="padding:0; margin-bottom:28px">
   <p class="small">© <span id="year"></span> Safi Ahmed • <a href="/#contact">Contact</a></p>
 </section>
 
-<!-- ===========================
-     JS: Theme Toggle + Nav Menu + Footer Year
-     =========================== -->
+
 <script>
 (function(){
   const KEY = 'theme';
   const root = document.documentElement;
   const btn = document.getElementById('mode');
 
-  /* Build dot + label (defensive) */
+ 
   function ensureBtn(){
     if (!btn) return;
     if (!btn.querySelector('.dot')){
@@ -403,12 +395,12 @@
     apply(cur === "dark" ? "light" : "dark");
   }
 
-  /* Init theme toggle */
+
   ensureBtn();
   apply(initial());
   if (btn) btn.addEventListener("click", toggle);
 
-  /* Mobile nav */
+
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
 
@@ -426,7 +418,7 @@
     });
   }
 
-  /* Footer year (as in example) */
+
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 })();

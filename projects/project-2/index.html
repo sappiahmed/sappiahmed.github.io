@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Google tag (gtag.js) -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH41Q4GLYY"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -17,18 +17,18 @@
   <title>ECG & Temperature Sensor — Project | Safi Ahmed</title>
   <meta name="description" content="End-to-end development of stretchable ECG and temperature sensors: fabrication workflow, temperature characterization, and ECG characterization." />
 
-  <!-- Keep your global CSS/JS for consistent site-wide look -->
+
   <link rel="stylesheet" href="/css/style.css" />
   <script defer src="/js/script.js"></script>
 
-  <!-- Page-local helpers (match previous project pages) -->
+
   <style>
     .section-card{
       background:var(--card); border:1px solid var(--ring); border-radius:var(--radius);
       box-shadow:var(--elev); padding:28px; margin-top:18px;
       transition: background-color .3s, border-color .3s, box-shadow .3s;
     }
-    /* Contained images (no overflow) */
+
     .section-card img{
       display:block; width:100%; height:auto; max-width:100%;
       border-radius:12px; object-fit:cover; box-shadow:var(--shadow-sm);
@@ -37,7 +37,7 @@
       display:inline-block; padding:6px 10px; border:1px solid var(--ring);
       border-radius:999px; color:var(--muted); font-size:12px; text-decoration:none;
     }
-    /* Inline link style to match main site */
+
     .section-card a{ color:var(--brand); text-decoration:none; font-weight:500; transition:color .2s,text-decoration .2s; }
     .section-card a:hover{ text-decoration:underline; color:color-mix(in oklab, var(--brand) 80%, var(--text)); }
 
@@ -57,7 +57,7 @@
     .small{ font-size:13px; color:var(--muted); }
     .kbd{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; background:var(--ring); color:var(--text); padding:2px 6px; border-radius:6px; font-size:12px; }
 
-    /* Nice lists that align with text */
+
     .tight-list{ padding-left:1.1rem; }
     .tight-list li{ margin:6px 0; }
     .metric-grid{ display:grid; gap:12px; grid-template-columns:repeat(3,minmax(0,1fr)); }
@@ -69,7 +69,7 @@
 </head>
 
 <body>
-  <!-- ===== NAVBAR (same structure/classes as earlier example) ===== -->
+
   <nav class="container">
     <div class="logo"><a href="/#home" style="text-decoration:none; color:inherit">Safi Ahmed</a></div>
     <ul class="nav-links">
@@ -83,7 +83,7 @@
     <div class="menu-toggle" aria-label="Toggle menu">☰</div>
   </nav>
 
-  <!-- ===== HERO ===== -->
+
   <section class="container section-card" id="hero">
     <a class="pill" href="/projects">← Back to Projects</a>
     <h1 style="margin:10px 0 6px">Flexible ECG & Temperature Sensor</h1>
@@ -99,10 +99,10 @@
     </div>
   </section>
 
-  <!-- ===== OVERVIEW FIGURE ===== -->
+
   <section class="container section-card" id="overview">
     <h2>Workflow Overview</h2>
-    <!-- replace src with your exported PNG path -->
+
     <img src="ecg_temp_workflow.png" alt="Overview: LIG → measurement → SEBS casting/peel → CNT blade-coating → attach to hot-melt → laminating → iron to garment" />
     <p class="small" style="margin-top:8px">
       LIG patterning and verification → SEBS drop-casting & peel → CNT blade-coating → hot-melt transfer →
@@ -110,7 +110,7 @@
     </p>
   </section>
 
-  <!-- ===== FABRICATION ===== -->
+
   <section class="container section-card" id="fabrication">
     <h2>Fabrication</h2>
     <div class="grid two">
@@ -143,7 +143,6 @@
     </div>
   </section>
 
-  <!-- ===== ECG CHARACTERIZATION ===== -->
   <section class="container section-card" id="ecg">
     <h2>ECG Characterization</h2>
     <div class="grid two">
@@ -175,7 +174,7 @@
     </div>
   </section>
 
-  <!-- ===== TEMPERATURE CHARACTERIZATION ===== -->
+
   <section class="container section-card" id="temp">
     <h2>Temperature Characterization</h2>
     <div class="grid two">
@@ -200,7 +199,7 @@
     </div>
   </section>
 
-  <!-- ===== FILES / REPO ===== -->
+
   <section class="container section-card" id="Next">
     <h2>What’s Next</h2>
     <ul class="tight-list">
@@ -216,13 +215,13 @@
     </ul>
   </section>
 
-  <!-- ===== FOOTER (same style as example) ===== -->
+
   <section class="container" style="padding:0; margin-bottom:28px">
     <p class="small">© <span id="year"></span> Safi Ahmed • <a href="/#contact">Contact</a></p>
   </section>
 
   <script>
-    // Footer year
+
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
