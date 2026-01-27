@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH41Q4GLYY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JH41Q4GLYY');
+  </script>
+
+  <title>Conductive Hydrogel for Hand Gesture Recognition and Human–Computer Interaction — Project | Safi Ahmed</title>
+  <meta name="description" content="A skin-compatible conductive hydrogel strain sensor integrated into a wearable glove for gesture recognition and human–computer interaction." />
+
+  <!-- Use your global site CSS/JS so design stays consistent -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <script defer src="/js/script.js"></script>
+
+  <!-- Page-local helpers (same tokens/patterns you’re using elsewhere) -->
+  <style>
+    :root{ --section-gap:28px; }
+
+    /* Cards + consistent spacing */
+    .section-card{
+      background:var(--card); border:1px solid var(--ring); border-radius:var(--radius);
+      box-shadow:var(--elev); padding:28px; margin-top:18px;
+      transition: background-color .3s, border-color .3s, box-shadow .3s;
+      width:100%; box-sizing:border-box;
+    }
+
+    /* Inline link style to match the main site */
+    .section-card a{ color:var(--brand); text-decoration:none; font-weight:500; transition:color .2s,text-decoration .2s; }
+    .section-card a:hover{ text-decoration:underline; color:color-mix(in oklab, var(--brand) 80%, var(--text)); }
+
+    /* Pills / small tags */
+    .pill{
+      display:inline-block; padding:6px 10px; border:1px solid var(--ring);
+      border-radius:999px; color:var(--muted); font-size:12px; text-decoration:none;
+    }
+    .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .tag{
+      font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid var(--ring);
+      background: color-mix(in oklab, var(--brand) 12%, transparent);
+    }
+
+    .small{ font-size:13px; color:var(--muted); }
+
+    /* Two-column helper that never exceeds container width */
+    .grid{ display:grid; gap:20px; width:100%; }
+    .grid.two{ grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+    @media (max-width:900px){ .grid.two{ grid-template-columns:1fr; } }
+
+    html, body{ overflow-x:hidden; }
+
+    /* Ensure images never overflow section-card */
+    .section-card img{
+      max-width:100%;
+      height:auto;
+      display:block;
+      border-radius:12px;
+      margin:0;
+      box-shadow:var(--shadow-sm);
+      object-fit:cover;
+    }
+
+    /* Schematic placeholder */
+    .media-block{ margin: 10px 0 0; }
+    .media-placeholder{
+      border:1px dashed var(--ring);
+      border-radius:12px;
+      padding:22px 16px;
+      text-align:center;
+      background: color-mix(in oklab, var(--card) 92%, transparent);
+      box-shadow: var(--shadow-sm);
+    }
+    .media-caption{ margin-top:10px; font-size:13px; color:var(--muted); }
+
+    /* Text flow pills */
+    .schematic-flow{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+    .flow-item{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--ring);
+      background: color-mix(in oklab, var(--brand) 10%, transparent);
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .flow-arrow{ opacity:.6; }
+
+    /* Optional action buttons (consistent with your other page) */
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .btn-link{
+      display:inline-block;
+      padding:8px 12px;
+      border:1px solid var(--ring);
+      border-radius:10px;
+      text-decoration:none;
+      color:var(--text);
+      background: color-mix(in oklab, var(--card) 80%, transparent);
+      box-shadow:var(--shadow-sm);
+      transition: transform .15s ease;
+    }
+    .btn-link:hover{ transform:translateY(-1px); }
+
+    /* ===== Centered schematic + caption below (RESPONSIVE) ===== */
+    .figure-schematic{
+      margin: 14px auto 0;
+      text-align: center; /* centers caption text */
+    }
+    .figure-schematic img{
+      display:block;
+      margin: 0 auto;      /* centers image */
+      width: 100%;
+      max-width: 520px;    /* desktop cap */
+      height: auto;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+    .figure-schematic figcaption{
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 520px;    /* caption aligns with image width */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Laptop / small desktop */
+    @media (max-width: 1200px){
+      .figure-schematic img,
+      .figure-schematic figcaption{ max-width: 480px; }
+    }
+    /* Tablet */
+    @media (max-width: 900px){
+      .figure-schematic img,
+      .figure-schematic figcaption{ max-width: 420px; }
+    }
+    /* Mobile */
+    @media (max-width: 600px){
+      .figure-schematic img,
+      .figure-schematic figcaption{ max-width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== Site Navbar (EXACT copy from your example) ===== -->
+  <nav class="container">
+    <div class="logo"><a href="/#home" style="text-decoration:none; color:inherit">Safi Ahmed</a></div>
+    <ul class="nav-links">
+      <li><a href="/#home">Home</a></li>
+      <li><a href="/#education">Education</a></li>
+      <li><a href="/#experience">Experience</a></li>
+      <li><a href="/#publications">Publications</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" aria-label="Toggle menu">☰</div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="container section-card" id="hero">
+    <a class="pill" href="/projects">← Back to Projects</a>
+    <h1 style="margin:10px 0 6px">Conductive Hydrogel for Hand Gesture Recognition and Human–Computer Interaction</h1>
+
+    <p class="small" style="margin:6px 0 0">
+      A soft, skin-compatible conductive hydrogel strain sensor integrated into a wearable glove for gesture-driven HCI.
+    </p>
+
+    <div class="tags" style="margin-top:10px">
+      <span class="tag">Conductive Hydrogel</span>
+      <span class="tag">Wearable Sensors</span>
+      <span class="tag">Gesture Recognition</span>
+      <span class="tag">Human–Computer Interaction</span>
+    </div>
+
+    <div class="actions" style="margin-top:12px;">
+      <a class="btn-link" href="#overview">Overview</a>
+      <a class="btn-link" href="#system-schematic">System Schematic</a>
+    </div>
+  </section>
+
+  <!-- ===== OVERVIEW ===== -->
+  <section class="container section-card" id="overview">
+    <h2>Overview</h2>
+    <p style="margin:10px 0 0">
+      Soft and skin-compatible sensing materials are essential for intuitive human–computer interaction.
+      This project focuses on a <strong>conductive hydrogel–based strain sensor</strong> designed for wearable
+      hand-gesture recognition, emphasizing mechanical compliance, signal stability, and real-world usability.
+    </p>
+  </section>
+
+  <!-- ===== SYSTEM SCHEMATIC ===== -->
+  <section class="container section-card" id="system-schematic">
+    <h2>System Schematic</h2>
+
+    <!-- Centered image with caption BELOW -->
+    <figure class="media-block figure-schematic">
+      <img
+        src="schematic.png"
+        alt="System schematic: wearable hydrogel sensor to gesture recognition"
+      />
+      <figcaption class="media-caption">
+        High-level pipeline from wearable sensing to gesture recognition and human–computer interaction.
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <section class="container" style="padding:0; margin-bottom:28px">
+    <p class="small">© <span id="year"></span> Safi Ahmed • <a href="/#contact">Contact</a></p>
+  </section>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
