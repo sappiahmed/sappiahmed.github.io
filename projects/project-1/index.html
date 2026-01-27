@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Google tag (gtag.js) -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JH41Q4GLYY"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -17,17 +17,17 @@
   <title>Real-World ML on Wearable Sensor Signals — Project | Safi Ahmed</title>
   <meta name="description" content="From raw oscilloscope CSVs to trained models: full pipeline with segmentation, dataset building, training, and evaluation on microcone sliding signals." />
 
-  <!-- Use your global site CSS/JS so design stays consistent -->
+ 
   <link rel="stylesheet" href="/css/style.css" />
   <script defer src="/js/script.js"></script>
 
-  <!-- Page-local helpers (same tokens/patterns you’re using elsewhere) -->
+
   <style>
     :root{
       --section-gap:28px;
     }
 
-    /* Cards + consistent spacing */
+
     .section-card{
       background:var(--card); border:1px solid var(--ring); border-radius:var(--radius);
       box-shadow:var(--elev); padding:28px; margin-top:18px;
@@ -36,11 +36,11 @@
       box-sizing:border-box;
     }
 
-    /* Inline link style to match the main site */
+
     .section-card a{ color:var(--brand); text-decoration:none; font-weight:500; transition:color .2s,text-decoration .2s; }
     .section-card a:hover{ text-decoration:underline; color:color-mix(in oklab, var(--brand) 80%, var(--text)); }
 
-    /* Pills / small tags */
+
     .pill{
       display:inline-block; padding:6px 10px; border:1px solid var(--ring);
       border-radius:999px; color:var(--muted); font-size:12px; text-decoration:none;
@@ -51,18 +51,18 @@
 
     .small{ font-size:13px; color:var(--muted); }
 
-    /* Two-column helper that never exceeds container width */
+
     .grid{ display:grid; gap:20px; width:100%; }
     .grid.two{ grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
     .grid.equal{ grid-template-columns: repeat(2, minmax(0,1fr)); }
     @media (max-width:900px){ .grid.two, .grid.equal{ grid-template-columns:1fr; } }
 
-    /* Figure-like layout */
+
     .figure{ display:grid; column-gap:32px; row-gap:18px; }
     @media (min-width:860px){ .figure{ grid-template-columns:1.2fr 1fr; } }
     .figure img{ width:100%; max-width:600px; height:auto; border-radius:12px; display:block; object-fit:cover; }
 
-    /* Code block */
+
     .code{
       font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
       background: color-mix(in oklab, var(--card) 92%, transparent);
@@ -75,7 +75,7 @@
 
     html, body{ overflow-x:hidden; }
 
-    /* Ensure images never overflow section-card */
+
     .section-card img {
       max-width: 100%;
       height: auto;
@@ -86,7 +86,7 @@
       object-fit: cover;
     }
 
-    /* Make list bullets align with text inside cards */
+
     .section-card ul,
     .section-card ol {
       padding-left: 1.2rem;
@@ -121,7 +121,7 @@
       transform:translateY(-1px);
     }
 
-    /* Responsive YouTube */
+
     .video{
       width:100%;
       border-radius:12px;
@@ -133,7 +133,7 @@
     .video .ratio{
       position:relative;
       width:100%;
-      padding-top:56.25%; /* 16:9 */
+      padding-top:56.25%; 
     }
     .video iframe{
       position:absolute;
@@ -143,7 +143,7 @@
       border:0;
     }
 
-    /* Small divider card for phase headers */
+
     .phase-header{
       display:flex;
       align-items:baseline;
@@ -155,7 +155,7 @@
 </head>
 
 <body>
-  <!-- ===== Site Navbar (EXACT copy from your example) ===== -->
+
   <nav class="container">
     <div class="logo"><a href="/#home" style="text-decoration:none; color:inherit">Safi Ahmed</a></div>
     <ul class="nav-links">
@@ -169,7 +169,7 @@
     <div class="menu-toggle" aria-label="Toggle menu">☰</div>
   </nav>
 
-  <!-- ===== HERO ===== -->
+
   <section class="container section-card" id="hero">
     <a class="pill" href="/projects">← Back to Projects</a>
     <h1 style="margin:10px 0 6px">Real-World ML on Wearable Sensor Signals</h1>
@@ -197,7 +197,7 @@
 
   <div class="grid two" style="margin-top:14px;">
 
-    <!-- LEFT: two figures -->
+ 
     <div>
       <h3 style="margin-top:0">Realtime pipeline snapshots</h3>
 
@@ -212,7 +212,7 @@
       </p>
     </div>
 
-    <!-- RIGHT: youtube + confusion matrix below -->
+
     <div>
       <h3 style="margin-top:0">Real-time inference demo</h3>
 
@@ -244,7 +244,7 @@
 </section>
 
 
-  <!-- ===== OVERVIEW (two columns inside one card) ===== -->
+
   <section class="container section-card" id="overview">
     <h2>Phase 1</h2>
     <div class="grid two">
@@ -268,7 +268,7 @@
     </div>
   </section>
 
-  <!-- ===== PIPELINE ===== -->
+
   <section class="container section-card" id="pipeline">
     <h2>Pipeline</h2>
     <ol>
@@ -284,7 +284,7 @@
     </div>
   </section>
 
-  <!-- ===== RESULTS (two columns inside one card) ===== -->
+
   <section class="container section-card" id="results">
     <h2>Results</h2>
     <div class="grid two">
@@ -306,7 +306,7 @@
     </div>
   </section>
 
-  <!-- ===== HOW TO RUN ===== -->
+
   <section class="container section-card" id="run">
     <h2>Reproduce this</h2>
     <p>Minimal steps to go from raw CSVs to trained models and figures:</p>
@@ -328,7 +328,7 @@ python scripts/run_train.py   # creates /results/<*.png + history.csv></pre>
     <p class="small" style="margin-top:10px">Splits: Train/Val/Test = 70/15/15 with stratification.</p>
   </section>
 
-  <!-- ===== FILE TREE ===== -->
+
   <section class="container section-card" id="files">
     <h2>Project layout</h2>
     <div class="code">
@@ -345,8 +345,7 @@ python scripts/run_train.py   # creates /results/<*.png + history.csv></pre>
     </div>
   </section>
 
-  <!-- ===== Next ===== -->
-<!-- ===== Next (Technical Improvements) ===== -->
+
 <section class="container section-card" id="next">
   <h2>What’s Next</h2>
 
@@ -356,7 +355,7 @@ python scripts/run_train.py   # creates /results/<*.png + history.csv></pre>
 
   <div class="grid two" style="margin-top:16px;">
 
-    <!-- LEFT COLUMN -->
+
     <div>
       <h3 style="margin-top:0">🚀 Applications</h3>
       <ul>
@@ -375,7 +374,7 @@ python scripts/run_train.py   # creates /results/<*.png + history.csv></pre>
       </ul>
     </div>
 
-    <!-- RIGHT COLUMN -->
+
     <div>
       <h3 style="margin-top:0">🧠 Learning & Adaptation</h3>
       <ul>
@@ -404,7 +403,7 @@ python scripts/run_train.py   # creates /results/<*.png + history.csv></pre>
 
 
 
-  <!-- ===== FOOTER ===== -->
+
   <section class="container" style="padding:0; margin-bottom:28px">
     <p class="small">© <span id="year"></span> Safi Ahmed • <a href="/#contact">Contact</a></p>
   </section>
