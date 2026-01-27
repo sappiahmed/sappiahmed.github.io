@@ -74,50 +74,83 @@
     }
 
     html, body{ overflow-x:hidden; }
+
     /* Ensure images never overflow section-card */
-.section-card img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-  margin: 0;
-  box-shadow: var(--shadow-sm);
-  object-fit: cover;
-}
-/* Make list bullets align with text inside cards */
-.section-card ul,
-.section-card ol {
-  padding-left: 1.2rem;     /* consistent with paragraphs */
-  margin-left: 0;           /* remove browser default offset */
-  list-style-position: inside; /* bullet inside the text block */
-}
+    .section-card img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      margin: 0;
+      box-shadow: var(--shadow-sm);
+      object-fit: cover;
+    }
 
-.section-card li {
-  margin: 4px 0;
-  line-height: 1.55;
-}
-.actions{ 
-  display:flex; 
-  gap:10px; 
-  flex-wrap:wrap; 
-  margin-top:12px; 
-}
+    /* Make list bullets align with text inside cards */
+    .section-card ul,
+    .section-card ol {
+      padding-left: 1.2rem;
+      margin-left: 0;
+      list-style-position: inside;
+    }
 
-.btn-link{
-  display:inline-block; 
-  padding:8px 12px; 
-  border:1px solid var(--ring);
-  border-radius:10px; 
-  text-decoration:none; 
-  color:var(--text);
-  background: color-mix(in oklab, var(--card) 80%, transparent);
-  box-shadow:var(--shadow-sm);
-  transition: transform .15s ease;
-}
-.btn-link:hover{ 
-  transform:translateY(-1px); 
-}
+    .section-card li {
+      margin: 4px 0;
+      line-height: 1.55;
+    }
 
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .btn-link{
+      display:inline-block;
+      padding:8px 12px;
+      border:1px solid var(--ring);
+      border-radius:10px;
+      text-decoration:none;
+      color:var(--text);
+      background: color-mix(in oklab, var(--card) 80%, transparent);
+      box-shadow:var(--shadow-sm);
+      transition: transform .15s ease;
+    }
+    .btn-link:hover{
+      transform:translateY(-1px);
+    }
+
+    /* Responsive YouTube */
+    .video{
+      width:100%;
+      border-radius:12px;
+      overflow:hidden;
+      border:1px solid var(--ring);
+      box-shadow:var(--shadow-sm);
+      background: color-mix(in oklab, var(--card) 92%, transparent);
+    }
+    .video .ratio{
+      position:relative;
+      width:100%;
+      padding-top:56.25%; /* 16:9 */
+    }
+    .video iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    /* Small divider card for phase headers */
+    .phase-header{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .phase-header h2{ margin:0; }
   </style>
 </head>
 
@@ -147,19 +180,73 @@
       <span class="tag">Signal Processing</span><span class="tag">Time-Series</span><span class="tag">Segmentation</span>
       <span class="tag">Model Zoo</span><span class="tag">Confusion Matrices</span>
     </div>
-    <div class="actions" style="margin-top:12px;">
-  <a class="btn-link" href="#overview">Overview</a>
-  <a class="btn-link" href="#pipeline">Pipeline</a>
-  <a class="btn-link" href="#results">Results</a>
-  <a class="btn-link" href="#run">Reproduce</a>
-  <a class="btn-link" href="https://github.com/sappiahmed/Sliding">GitHub</a>
-</div>
 
+    <div class="actions" style="margin-top:12px;">
+      <a class="btn-link" href="#phase2">Phase 2</a>
+      <a class="btn-link" href="#phase1">Phase 1</a>
+      <a class="btn-link" href="#run">Reproduce</a>
+      <a class="btn-link" href="https://github.com/sappiahmed/Sliding">GitHub</a>
+    </div>
   </section>
+
+  <section class="container section-card" id="phase2">
+  <div class="phase-header">
+    <h2>Phase 2</h2>
+    <span class="small">Real-time ML inference + ESP32 data collection + training pipeline</span>
+  </div>
+
+  <div class="grid two" style="margin-top:14px;">
+
+    <!-- LEFT: two figures -->
+    <div>
+      <h3 style="margin-top:0">Realtime pipeline snapshots</h3>
+
+      <p class="small" style="margin:8px 0 6px;">Sliding signal (live stream / windowed input)</p>
+      <img src="phase2_signal.png" alt="Phase 2: sliding signal">
+
+      <p class="small" style="margin:14px 0 6px;">Training curves (epoch vs loss and accuracy)</p>
+      <img src="phase2_curves.png" alt="Phase 2: epoch vs loss and accuracy">
+
+      <p class="small" style="margin-top:12px;">
+        FINAL TEST ACCURACY: 95.24%
+      </p>
+    </div>
+
+    <!-- RIGHT: youtube + confusion matrix below -->
+    <div>
+      <h3 style="margin-top:0">Real-time inference demo</h3>
+
+      <div class="video" style="margin-top:10px;">
+        <div class="ratio">
+          <iframe
+            src="https://www.youtube.com/embed/ztL5reCQoxg"
+            title="Real-time inference demo"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <p class="small" style="margin:14px 0 6px;">Confusion matrix (test set)</p>
+      <img src="phase2_cm.png" alt="Phase 2: confusion matrix">
+
+      <div class="callout" style="margin-top:14px">
+        <strong>What’s new in Phase 2</strong>
+        <ul style="margin-top:8px;">
+          <li>ESP32-based data acquisition & structured dataset logging</li>
+          <li>PC-side real-time preprocessing → inference loop</li>
+          <li>Training + evaluation loop tied to the same label set used in deployment</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
   <!-- ===== OVERVIEW (two columns inside one card) ===== -->
   <section class="container section-card" id="overview">
-    <h2>Overview</h2>
+    <h2>Phase 1</h2>
     <div class="grid two">
       <div>
         <p>
@@ -261,41 +348,61 @@ python scripts/run_train.py   # creates /results/<*.png + history.csv></pre>
   <!-- ===== Next ===== -->
 <!-- ===== Next (Technical Improvements) ===== -->
 <section class="container section-card" id="next">
-  <h2>Next</h2>
-  <p>
-    The following technical improvements are planned to advance the current pipeline
-    toward higher robustness, performance, and real-time deployment capability:
+  <h2>What’s Next</h2>
+
+  <p class="small">
+    Moving from real-time classification to <strong>adaptive, closed-loop interaction</strong>.
   </p>
 
-  <ul style="margin-top:10px;">
-    <li>
-      <strong>Dataset expansion & signal quality optimization</strong> —
-      Acquire higher-fidelity voltage traces by improving shielding, grounding, and mechanical stability.
-      Collect multi-session, multi-subject datasets with controlled motion profiles to reduce domain shift.
-    </li>
+  <div class="grid two" style="margin-top:16px;">
 
-    <li>
-      <strong>Architecture-level enhancements for higher accuracy</strong> —
-      Explore deeper temporal encoders: dilated CNN stacks, hybrid CNN–Transformer pipelines,
-      gated attention modules, and lightweight diffusion-inspired feature extractors.
-      Run ablation studies on receptive field scaling, window length, and multi-head temporal attention
-      to maximize discriminability and robustness under inter-subject variability.
-    </li>
+    <!-- LEFT COLUMN -->
+    <div>
+      <h3 style="margin-top:0">🚀 Applications</h3>
+      <ul>
+        <li>
+          <strong>Robotic manipulation</strong><br>
+          Gesture-driven control of robotic arms and mobile robots.
+        </li>
+        <li>
+          <strong>Vehicle & assistive interfaces</strong><br>
+          Sensor-based steering, throttle, or mode selection.
+        </li>
+        <li>
+          <strong>Human–computer interaction</strong><br>
+          Real-time control for games and virtual environments.
+        </li>
+      </ul>
+    </div>
 
-    <li>
-  <strong>Real-time data acquisition & wireless streaming (PC-side ML)</strong> —
-  Use the ESP32 as a data-acquisition node only: sample the sensor at a fixed rate,
-  stream to a PC via <strong>Wi-Fi</strong> (WebSocket/TCP/UDP) or <strong>BLE</strong> (notifications/indications).
-  Run the entire ML stack on the PC (denoising → segmentation → inference → logging).
-  <ul style="margin-top:6px;">
-    <li><em>ESP32</em>: ADC read → ring buffer → packet (seq_id, t_us, payload, CRC) → Wi-Fi/BLE TX.</li>
-    <li><em>PC</em>: socket/WebSocket/BLE client → integrity check → preprocess → model inference → save CSV/PNG.</li>
-    <li><em>Protocols</em>: Wi-Fi/WebSocket for reliability + throughput; BLE for mobile or low-power demos.</li>
-    <li><em>Resilience</em>: reconnect + resume offsets; jitter smoothing with host clock; per-packet acks (optional).</li>
-  </ul>
-</li>
-  </ul>
+    <!-- RIGHT COLUMN -->
+    <div>
+      <h3 style="margin-top:0">🧠 Learning & Adaptation</h3>
+      <ul>
+        <li>
+          <strong>Human-in-the-loop learning</strong><br>
+          User confirms or corrects predictions during inference.
+        </li>
+        <li>
+          <strong>Online model improvement</strong><br>
+          Verified samples are logged and used to refine the model.
+        </li>
+        <li>
+          <strong>Transfer & continual learning</strong><br>
+          Pretrained base model adapts to new users with minimal data.
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="callout" style="margin-top:18px">
+    <strong>Vision =></strong> A wearable-sensor system that learns from the user in real time,
+    improving accuracy and control the more it is used.
+  </div>
 </section>
+
+
 
   <!-- ===== FOOTER ===== -->
   <section class="container" style="padding:0; margin-bottom:28px">
